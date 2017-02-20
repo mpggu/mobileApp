@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, AppRegistry, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, ActivityIndicator } from 'react-native';
 import { Colors } from '../../Constants';
 import LoginForm from './LoginForm';
 
@@ -11,12 +11,12 @@ export default class Login extends Component {
           <Image
            style={styles.logo}
            source={require('../../images/logo.png')} 
-           />
+          />
 
-          <Text style={styles.title}> Die offizielle MPG app! </Text>
+          <Text style={styles.title}> Die offizielle MPG app! Bald mit zumutbarem Logo! </Text>
         </View>
         <View style={styles.formContainer}>
-          <LoginForm />
+          <LoginForm navigator={this.props.navigator} />
         </View>
       </View>
     );
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    marginTop: 10
+    marginTop: 10,
+    width: 170,
+    textAlign: 'center'
   }
-})
+});
 
-
-AppRegistry.registerComponent('Login', () => Login);

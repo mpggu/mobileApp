@@ -1,19 +1,71 @@
 import React, { Component } from 'react';
 import { Colors } from '../../Constants';
-import { StyleSheet, View, AppRegistry, TextInput, TouchableOpacity, Text, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { 
+  StyleSheet, 
+  View,
+  TextInput, 
+  TouchableOpacity, 
+  Text, 
+  KeyboardAvoidingView, 
+  StatusBar,
+  ActivityIndicator,
+} from 'react-native';
 
 export default class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pendingLoginRequest: false,
+      username: '',
+      password: ''
+    }
+  }
+
+  toggleLogin() {
+    this.setState(state => {
+      state.pendingLoginRequest = !state.pendingLoginRequest;
+      return state;
+    });
+  }
+
+  redirect(routeName) {
+    this.props.navigator.push({
+      name: routeName,
+    });
+  }
+
+  authenticate() {
+    return this.state.username === 'test' && this.state.password === 'pw';
+  }
+
+  onPressLoginButton() {
+    if (!this.state.pendingLoginRequest) {
+      this.toggleLogin();
+      if (!this.authenticate) {
+        return this.toggleLogin();
+        // err message
+      }
+
+      this.redirect('Home');
+    }
+  }
+
   render() {
     return (
       <KeyboardAvoidingView 
         behavior="padding" 
         style={styles.container}
-        >
+      >
+        <ActivityIndicator 
+          animating={this.state.pendingLoginRequest}
+          size='large'
+          style={styles.activity}
+        />
         <StatusBar
           barStyle="light-content"
           animated
           backgroundColor={Colors.Blue}
-          />
+        />
         <TextInput
           placeholder="Benutzername"
           placeholderTextColor= "rgba(255, 255, 255, 0.7)"
@@ -22,19 +74,28 @@ export default class LoginForm extends Component {
           onSubmitEditing={() => this.refs.passwordInput.focus()}
           selectionColor="#333333"
           underlineColorAndroid="transparent"
-          style={styles.input} 
-          />
+          style={styles.input}
+          editable={!this.state.pendingLoginRequest}
+          onChangeText={username => this.setState({...this.state, username})}
+          ref="usernameInput"
+        />
         <TextInput
           placeholder="Passwort"
-          placeholderTextColor= "rgba(255, 255, 255, 0.7)"
+          placeholderTextColor="rgba(255, 255, 255, 0.7)"
           returnKeyType="go"
           underlineColorAndroid="transparent"
           secureTextEntry
           style={styles.input}
-          ref= "passwordInput"
-          />
+          editable={!this.state.pendingLoginRequest}
+          onChangeText={password => this.setState({...this.state, password})}
+          ref="passwordInput"
+        />
 
-        <TouchableOpacity style={styles.buttonContainer}>
+        <TouchableOpacity 
+          style={styles.buttonContainer} 
+          onPress={this.onPressLoginButton.bind(this)}
+          activeOpacity={!this.state.pendingLoginRequest ? 0.2 : 1}
+        >
           <Text style={styles.buttonText}>Anmelden</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -62,8 +123,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold'
+  },
+  activity: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20
   }
-})
-
-
-AppRegistry.registerComponent('LoginForm', () => LoginForm);
+});

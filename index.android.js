@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Login from './src/components/Login/Login';
-import { AppRegistry } from 'react-native';
+import App from './src/App';
+import { AppRegistry, Text, View } from 'react-native';
 
 export default class mobileApp extends Component {
   render() {
     return (
-      <Login />
+      <App />
     );
   }
 }
