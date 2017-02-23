@@ -29,19 +29,19 @@ export default class LoginForm extends Component {
   }
 
   redirect(routeName) {
-    this.props.navigator.push({
+    this.props.navigator.replace({
       name: routeName,
     });
   }
 
   authenticate() {
-    return this.state.username === 'test' && this.state.password === 'pw';
+    return (this.state.username === 'test' && this.state.password === 'pw');
   }
 
   onPressLoginButton() {
     if (!this.state.pendingLoginRequest) {
       this.toggleLogin();
-      if (!this.authenticate) {
+      if (!this.authenticate()) {
         return this.toggleLogin();
         // err message
       }

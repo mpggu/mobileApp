@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import {
   View,
   Navigator,
-  Text
+  Text,
+  Platform
 } from 'react-native';
 
 import Login from './components/Login/Login';
+import Home from './components/Home/Home';
 
 export default class App extends Component {
   
   renderScene(route, navigator) {
-    console.log(route);
     switch (route.name) {
       case 'Login':
-        return <Login navigator={navigator}/>
+        return <Login navigator={navigator} />
+      case 'Home':
+        return <Home navigator={navigator} />
     }
   }
 
@@ -23,7 +26,7 @@ export default class App extends Component {
         style={{ flex: 1}}
         initialRoute={{ name: 'Login'}}
         renderScene={this.renderScene.bind(this)}
-        />
+      />
     );
   }
 }

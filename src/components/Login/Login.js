@@ -13,7 +13,6 @@ export default class Login extends Component {
            source={require('../../images/logo.png')} 
           />
 
-          <Text style={styles.title}> Die offizielle MPG app! Bald mit zumutbarem Logo! </Text>
         </View>
         <View style={styles.formContainer}>
           <LoginForm navigator={this.props.navigator} />
@@ -34,8 +33,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   logo: {
-    width: 150,
-    height: 100
+    width: 400,
+    height: 350
   },
   title: {
     color: 'white',
