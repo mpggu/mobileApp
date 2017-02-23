@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, Platform, TouchableOpacity } from 'react-native
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import PlanContainer from './PlanContainer';
+
 import { Colors } from '../../Constants';
 
 export default class Header extends Component {
@@ -29,9 +31,25 @@ export default class Header extends Component {
   };
 
   renderScene = ({ route }) => {
+    const data = [{ klasse: 'Q1/Q2',
+      stunde: '3 - 4',
+      fach: '',
+      vertreter: '+',
+      lehrer: 'Mz',
+      raum: 'E01',
+      art: 'EVA' },
+    { klasse: 'Q1/Q2',
+      stunde: '10 - 11',
+      fach: '',
+      vertreter: '+',
+      lehrer: 'Ste',
+      raum: 'A16',
+      art: 'EVA' } 
+    ];
+
     switch (route.key) {
     case '1':
-      return <View style={styles.page} />;
+      return <PlanContainer data={data} style={styles.page} />;
     case '2':
       return <View style={styles.page} />;
     default:

@@ -24,7 +24,7 @@ export default class App extends Component {
     return (
       <Navigator
         style={{ flex: 1}}
-        initialRoute={{ name: 'Login'}}
+        initialRoute={{ name: 'Home'}}
         renderScene={this.renderScene.bind(this)}
       />
     );
