@@ -13,12 +13,12 @@ export default class Plan extends Component {
         elevation={3}
       >
         <View style={styles.planTimeContainer}>
-          <Text style={styles.planTimeText}>1 - 2</Text>
+          <Text style={styles.planTimeText}>{this.props.plan.stunde}</Text>
         </View>
 
         <View style={styles.planInfoContainer}>
-          <Text style={styles.planTypeText}>EVA</Text>
-          <Text style={styles.planInfoText}>Bio bei Zemke</Text>
+          <Text style={styles.planTypeText}>{this.props.plan.art}</Text>
+          <Text style={styles.planInfoText}>{this.props.plan.raum} bei {this.props.plan.lehrer}</Text>
         </View>
       </View>
     );
