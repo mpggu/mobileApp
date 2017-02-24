@@ -32,19 +32,33 @@ export default class Header extends Component {
 
   renderScene = ({ route }) => {
     const data = [{ klasse: 'Q1/Q2',
-      stunde: '3 - 4',
+      stunde: '2',
       fach: '',
       vertreter: '+',
       lehrer: 'Mz',
       raum: 'E01',
-      art: 'EVA' },
+      art: 'fällt aus' },
     { klasse: 'Q1/Q2',
-      stunde: '10 - 11',
+      stunde: '3 - 4',
       fach: '',
       vertreter: '+',
       lehrer: 'Ste',
       raum: 'A16',
-      art: 'EVA' } 
+      art: 'EVA' },
+      { klasse: 'Q1/Q2',
+      stunde: '5 - 6',
+      fach: 'Ek',
+      vertreter: 'Hen',
+      lehrer: 'Ste',
+      raum: 'E12',
+      art: 'Vertr.' },
+      { klasse: 'Q1/Q2',
+      stunde: '10 - 11',
+      fach: 'PoWi',
+      vertreter: 'Hen',
+      lehrer: 'Hen',
+      raum: 'E12',
+      art: 'Raum-Vtr.' },
     ];
 
     switch (route.key) {

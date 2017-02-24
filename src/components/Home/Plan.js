@@ -9,7 +9,7 @@ export default class Plan extends Component {
   render() {
     return (
       <View 
-        style={styles.container}
+        style={[styles.container, { backgroundColor: this.props.color }]}
         elevation={3}
       >
         <View style={styles.planTimeContainer}>
@@ -18,7 +18,7 @@ export default class Plan extends Component {
 
         <View style={styles.planInfoContainer}>
           <Text style={styles.planTypeText}>{this.props.plan.art}</Text>
-          <Text style={styles.planInfoText}>{this.props.plan.raum} bei {this.props.plan.lehrer}</Text>
+          <Text style={styles.planInfoText}>{this.props.subText}</Text>
         </View>
       </View>
     );
@@ -28,9 +28,8 @@ export default class Plan extends Component {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'tomato',
     flexDirection: 'row',
-    marginTop: 10
+    marginBottom: 10,
   },
 
   planTimeContainer: {

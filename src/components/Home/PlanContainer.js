@@ -16,10 +16,56 @@ export default class PlanContainer extends Component {
       planDataSource: ds.cloneWithRows(props.data)
     }
   }
+
+  handleUnknown(plan) {
+    let text = plan.hasSubject ? `${plan.fach} bei ` : '';
+    text += plan.lehrer;
+    text += plan.hasSubstitute ? ` vertreten durch ${plan.vertreter} ` : ' ';
+    text += `in ${plan.raum}`;
+
+    return text;
+  }
   
+  transformType(plan) {
+    plan.hasSubject = !!plan.fach;
+    plan.hasSubstitute = plan.vertreter !== '+' && plan.vertreter !== plan.lehrer;
+
+    switch(plan.art) {
+      case 'EVA':
+        return {
+          color: Colors.sub.Cancelled,
+          subText: plan.lehrer,
+        };
+      case 'fällt aus': 
+        return {
+          color: Colors.sub.Cancelled,
+          subText: plan.hasSubject ? `${plan.fach} bei ` : '' + plan.lehrer,
+        }
+      case 'Vertr.':
+        return {
+          color: Colors.sub.Substitution,
+          subText: this.handleUnknown(plan),
+        }
+      case 'Raum-Vtr.':
+        return {
+          color: Colors.sub.RoomSwitch,
+          subText: this.handleUnknown(plan),
+        }
+      default: 
+        return {
+          color: Colors.sub.Default,
+          subText: this.handleUnknown(plan),
+        }
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.subHeader}>
+          <Text style={styles.date}>24.02.2017 Freitag</Text>
+          <Text style={styles.lastUpdated}>Stand: 23.02.2017 7:16</Text>
+        </View>
         <ListView
           style={styles.listView}
           dataSource={this.state.planDataSource}
@@ -30,8 +76,10 @@ export default class PlanContainer extends Component {
   }
 
   renderPlan(plan) {
+    const planType = this.transformType(plan);
+
     return (
-      <Plan plan={plan} />
+      <Plan color={planType.color} subText={planType.subText} plan={plan} />
     )
   }
 }
@@ -42,6 +90,23 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WhiteBG,
   },
   listView: {
-    padding: 20,
+    paddingHorizontal: 20
+  },
+
+  subHeader: {
+    flexDirection: 'column',
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  date: {
+    fontWeight: 'bold',
+    color: '#676767',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  lastUpdated: {
+    textAlign: 'center',
   }
 });
