@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ListView } from 'react-native';
+import { StyleSheet, View, Text, ListView, RefreshControl } from 'react-native';
 import Plan from './Plan';
+
+import moment from 'moment';
 
 import { Colors } from '../../Constants';
 
@@ -13,8 +15,11 @@ export default class PlanContainer extends Component {
     });
 
     this.state = {
-      planDataSource: ds.cloneWithRows(props.data)
-    }
+      planDataSource: ds.cloneWithRows(this.props.data.data),
+      refreshing: false,
+    };
+
+    require('moment/locale/de');
   }
 
   handleUnknown(plan) {
@@ -40,37 +45,61 @@ export default class PlanContainer extends Component {
         return {
           color: Colors.sub.Cancelled,
           subText: plan.hasSubject ? `${plan.fach} bei ` : '' + plan.lehrer,
-        }
+        };
       case 'Vertr.':
         return {
           color: Colors.sub.Substitution,
           subText: this.handleUnknown(plan),
-        }
+        };
       case 'Raum-Vtr.':
         return {
           color: Colors.sub.RoomSwitch,
           subText: this.handleUnknown(plan),
-        }
+        };
       default: 
         return {
           color: Colors.sub.Default,
           subText: this.handleUnknown(plan),
-        }
+        };
     }
   }
 
+  onRefresh() {
+    this.setState({ refreshing: true });
+    setTimeout(() => {
+      this.setState({ refreshing: false });
+    }, 1000);
+  }
+  
+  renderRefreshControl() {
+    return (
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={this.onRefresh.bind(this)}
+        colors={[Colors.sub.Cancelled]}
+        tintColor={Colors.sub.Cancelled}
+      />
+    );
+  }
+
   render() {
+    const date = moment(this.props.data.date, 'X');
+
+    const lastEdited = moment(this.props.data.lastEdited, 'X');
+
     return (
       <View style={styles.container}>
         <View style={styles.subHeader}>
-          <Text style={styles.date}>24.02.2017 Freitag</Text>
-          <Text style={styles.lastUpdated}>Stand: 23.02.2017 7:16</Text>
+          <Text style={styles.date}>{date.format('dddd, DD.MM.YYYY')}</Text>
+          <Text style={styles.lastUpdated}>{`Stand: ${lastEdited.format('DD.MM.YY H:kk')}`}</Text>
         </View>
-        <ListView
-          style={styles.listView}
-          dataSource={this.state.planDataSource}
-          renderRow={(plan) => { return this.renderPlan(plan) }}
-        />
+        <View style={styles.listView}>
+          <ListView
+            refreshControl={this.renderRefreshControl()}
+            dataSource={this.state.planDataSource}
+            renderRow={this.renderPlan.bind(this)}
+          />
+        </View>
       </View>
     );
   }
@@ -90,7 +119,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WhiteBG,
   },
   listView: {
-    paddingHorizontal: 20
+    flex: 1,
+    paddingHorizontal: 20,
   },
 
   subHeader: {

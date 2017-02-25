@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView, 
   StatusBar,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 
 export default class LoginForm extends Component {
@@ -42,6 +43,14 @@ export default class LoginForm extends Component {
     if (!this.state.pendingLoginRequest) {
       this.toggleLogin();
       if (!this.authenticate()) {
+        Alert.alert(
+          'Anmeldefehler',
+          'Der Benutzername und das Passwort stimmen nicht überein.',
+          [
+            { text: 'OK'}
+          ],
+          { cancelable: true }
+        );
         return this.toggleLogin();
         // err message
       }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Platform, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Platform, TouchableOpacity, StatusBar } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -31,41 +31,11 @@ export default class Header extends Component {
   };
 
   renderScene = ({ route }) => {
-    const data = [{ klasse: 'Q1/Q2',
-      stunde: '2',
-      fach: '',
-      vertreter: '+',
-      lehrer: 'Mz',
-      raum: 'E01',
-      art: 'fällt aus' },
-    { klasse: 'Q1/Q2',
-      stunde: '3 - 4',
-      fach: '',
-      vertreter: '+',
-      lehrer: 'Ste',
-      raum: 'A16',
-      art: 'EVA' },
-      { klasse: 'Q1/Q2',
-      stunde: '5 - 6',
-      fach: 'Ek',
-      vertreter: 'Hen',
-      lehrer: 'Ste',
-      raum: 'E12',
-      art: 'Vertr.' },
-      { klasse: 'Q1/Q2',
-      stunde: '10 - 11',
-      fach: 'PoWi',
-      vertreter: 'Hen',
-      lehrer: 'Hen',
-      raum: 'E12',
-      art: 'Raum-Vtr.' },
-    ];
-
     switch (route.key) {
     case '1':
-      return <PlanContainer data={data} style={styles.page} />;
+      return <PlanContainer data={this.props.plan.today} style={styles.page} />;
     case '2':
-      return <View style={styles.page} />;
+      return <PlanContainer data={this.props.plan.tomorrow} style={styles.page} />;
     default:
       return null;
     }
@@ -74,6 +44,11 @@ export default class Header extends Component {
   render() {
     return (
       <View style={styles.root}>
+        <StatusBar
+          barStyle="light-content"
+          animated
+          backgroundColor={Colors.Blue}
+        />
         <View style={styles.container}>
           <Text style={styles.title}>Vertretungsplan</Text>
           <TouchableOpacity style={styles.refreshIcon}>
