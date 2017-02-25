@@ -5,6 +5,7 @@ import PlanFetcher from '../../lib/PlanFetcher';
 
 import Header from './Header';
 import LoadingScreen from '../LoadingScreen';
+import PullToRefresh from './PullToRefresh';
 
 export default class Home extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ export default class Home extends Component {
       let today = await PlanFetcher.fetchPlan('today');
       let tomorrow = await PlanFetcher.fetchPlan('tomorrow');
 
-      today.data = today.data.filter(p => p.klasse === 'Q1/Q2');
+      today.data = today.data.filter(p => p.klasse === 'Q3/Q4');
       tomorrow.data = tomorrow.data.filter(p => p.klasse === '9A');
 
       this.setState({plan: {today, tomorrow}});
@@ -37,11 +38,15 @@ export default class Home extends Component {
   render() {
     if (this.state.plan.today && this.state.plan.tomorrow) {
       return (
-        <Header 
-          fetchData={this.fetchData.bind(this)} 
-          plan={this.state.plan}
-          navigator={this.props.navigator}
-        />
+        <View style={styles.container}>
+          <Header
+            fetchData={this.fetchData.bind(this)} 
+            plan={this.state.plan}
+            navigator={this.props.navigator}
+          />
+
+          <PullToRefresh />
+        </View>
       );
     }
 
@@ -50,6 +55,8 @@ export default class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+  }
 });
 
