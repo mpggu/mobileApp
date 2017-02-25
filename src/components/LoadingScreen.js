@@ -18,11 +18,9 @@ export default class Home extends Component {
 
     const isLoggedIn = await Storage.isLoggedIn();
 
-    if (isLoggedIn) {
-      this.props.navigator.replace({
-        name: 'Home',
-      });
-    }
+    this.props.navigator.replace({
+        name: isLoggedIn ? 'Home' : 'Login',
+    });
   }
 
   render() {

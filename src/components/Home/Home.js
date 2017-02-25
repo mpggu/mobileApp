@@ -36,7 +36,13 @@ export default class Home extends Component {
 
   render() {
     if (this.state.plan.today && this.state.plan.tomorrow) {
-      return <Header fetchData={this.fetchData.bind(this)} plan={this.state.plan} />;
+      return (
+        <Header 
+          fetchData={this.fetchData.bind(this)} 
+          plan={this.state.plan}
+          navigator={this.props.navigator}
+        />
+      );
     }
 
     return <LoadingScreen />;

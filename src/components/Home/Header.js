@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import PlanContainer from './PlanContainer';
 
+import Storage from '../../lib/Storage';
+
 import { Colors } from '../../Constants';
 
 export default class Header extends Component {
@@ -27,6 +29,14 @@ export default class Header extends Component {
 
   handleChangeTab = index => {
     this.setState({ index });
+  }
+
+  logOutPressed = () => {
+    Storage.logOut();
+
+    this.props.navigator.replace({
+      name: 'Login',
+    });
   }
 
   renderHeader = props => {
@@ -58,9 +68,12 @@ export default class Header extends Component {
         />
         <View style={styles.container}>
           <Text style={styles.title}>Vertretungsplan</Text>
-          <TouchableOpacity style={styles.refreshIcon}>
+          <TouchableOpacity 
+            style={styles.refreshIcon}
+            onPress={this.logOutPressed}
+          >
             <Icon 
-              name="refresh" 
+              name="sign-out" 
               size={25} 
               color="white"
             />
