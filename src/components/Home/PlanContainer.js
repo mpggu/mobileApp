@@ -64,11 +64,15 @@ export default class PlanContainer extends Component {
     }
   }
 
-  onRefresh() {
+  async onRefresh() {
     this.setState({ refreshing: true });
-    setTimeout(() => {
+
+    try {
+      await this.props.fetchData();
       this.setState({ refreshing: false });
-    }, 1000);
+    } catch(err) {
+      this.setState({ refreshing: false });
+    }
   }
   
   renderRefreshControl() {
@@ -138,5 +142,5 @@ const styles = StyleSheet.create({
   },
   lastUpdated: {
     textAlign: 'center',
-  }
+  },
 });

@@ -12,6 +12,8 @@ import {
   Alert,
 } from 'react-native';
 
+import Storage from '../../lib/Storage';
+
 export default class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -54,6 +56,8 @@ export default class LoginForm extends Component {
         return this.toggleLogin();
         // err message
       }
+
+      Storage.logIn();
 
       this.redirect('Home');
     }

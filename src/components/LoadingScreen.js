@@ -1,9 +1,30 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
 
-import { Colors } from '../../Constants';
+import Storage from '../lib/Storage';
+
+import { Colors } from '../Constants';
 
 export default class Home extends Component {
+  
+  componentDidMount() {
+    this.verifyLogin();
+  }
+
+  async verifyLogin() {
+    if (!this.props.navigator) {
+      return false;
+    }
+
+    const isLoggedIn = await Storage.isLoggedIn();
+
+    if (isLoggedIn) {
+      this.props.navigator.replace({
+        name: 'Home',
+      });
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -14,7 +35,7 @@ export default class Home extends Component {
         />
         <Image 
           style={styles.image}
-          source={require('../../images/loading.gif')}
+          source={require('../images/loading.gif')}
         />
       </View>
     );

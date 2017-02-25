@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Platform, TouchableOpacity, StatusBar } from 'react-native';
+import { 
+  StyleSheet, 
+  View, 
+  Text, 
+  Platform, 
+  TouchableOpacity, 
+  StatusBar,
+  ActivityIndicator,
+} from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -14,6 +22,7 @@ export default class Header extends Component {
       { key: '1', title: 'Heute' },
       { key: '2', title: 'Morgen' },
     ],
+    refreshing: false,
   };
 
   handleChangeTab = index => {
@@ -31,14 +40,12 @@ export default class Header extends Component {
   };
 
   renderScene = ({ route }) => {
-    switch (route.key) {
-    case '1':
-      return <PlanContainer data={this.props.plan.today} style={styles.page} />;
-    case '2':
-      return <PlanContainer data={this.props.plan.tomorrow} style={styles.page} />;
-    default:
-      return null;
-    }
+    return (
+      <PlanContainer 
+        fetchData={this.props.fetchData} 
+        data={this.props.plan[route.key === '1' ? 'today' : 'tomorrow']}
+      />
+    )
   };
 
   render() {

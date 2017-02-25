@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import PlanFetcher from '../../lib/PlanFetcher';
 
 import Header from './Header';
-import LoadingScreen from './LoadingScreen';
+import LoadingScreen from '../LoadingScreen';
 
 export default class Home extends Component {
   constructor(props) {
@@ -26,13 +26,9 @@ export default class Home extends Component {
       let tomorrow = await PlanFetcher.fetchPlan('tomorrow');
 
       today.data = today.data.filter(p => p.klasse === 'Q1/Q2');
-      tomorrow.data = tomorrow.data.filter(p => p.klasse === '5E');
+      tomorrow.data = tomorrow.data.filter(p => p.klasse === '9A');
 
-      
-
-      setTimeout(() => {
-        this.setState({plan: {today, tomorrow}});
-      }, 4000);
+      this.setState({plan: {today, tomorrow}});
     } catch (err) {
       console.error(err);
     }
@@ -40,7 +36,7 @@ export default class Home extends Component {
 
   render() {
     if (this.state.plan.today && this.state.plan.tomorrow) {
-      return <Header plan={this.state.plan} />;
+      return <Header fetchData={this.fetchData.bind(this)} plan={this.state.plan} />;
     }
 
     return <LoadingScreen />;
