@@ -33,6 +33,4 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     color: "#9B9B9B",
   },
-  icon: {
-  }
 });

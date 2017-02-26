@@ -112,8 +112,12 @@ export default class PlanContainer extends Component {
     const planType = this.transformType(plan);
 
     return (
-      <Plan color={planType.color} subText={planType.subText} plan={plan} />
-    )
+      <Plan 
+        color={planType.color} 
+        subText={planType.subText} 
+        plan={plan}
+      />
+    );
   }
 }
 
