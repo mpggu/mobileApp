@@ -95,6 +95,7 @@ export const Teachers = {
   Ste: "Steinke",
   Stk: "Storck",
   Swa: "Schwabach-Nehring",
+  Tay: "Taylor",
   Tü: "Türke",
   Ts: "Tüshaus",
   Vol: "Vollmers",
