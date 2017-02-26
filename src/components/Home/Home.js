@@ -7,6 +7,8 @@ import Header from './Header';
 import LoadingScreen from '../LoadingScreen';
 import PullToRefresh from './PullToRefresh';
 
+import { Teachers } from '../../Constants';
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -26,8 +28,20 @@ export default class Home extends Component {
       let today = await PlanFetcher.fetchPlan('today');
       let tomorrow = await PlanFetcher.fetchPlan('tomorrow');
 
-      today.data = today.data.filter(p => p.klasse === 'Q3/Q4');
-      tomorrow.data = tomorrow.data.filter(p => p.klasse === '9A');
+      today.data = today.data
+        .filter(p => p.klasse === 'Q3/Q4')
+        .map(p => {
+          p.lehrer = Teachers[p.lehrer] || p.lehrer;
+          p.vertreter = Teachers[p.vertreter] || p.vertreter;
+          return p;
+        });
+      tomorrow.data = tomorrow.data
+        .filter(p => p.klasse === '9A')
+        .map(p => {
+          p.lehrer = Teachers[p.lehrer] || p.lehrer;
+          p.vertreter = Teachers[p.vertreter] || p.vertreter;
+          return p;
+        });
 
       this.setState({plan: {today, tomorrow}});
     } catch (err) {

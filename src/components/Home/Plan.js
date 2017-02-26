@@ -10,7 +10,6 @@ export default class Plan extends Component {
     return (
       <View 
         style={[styles.container, { backgroundColor: this.props.color }]}
-        elevation={3}
       >
         <View style={styles.planTimeContainer}>
           <Text style={styles.planTimeText}>{this.props.plan.stunde}</Text>
@@ -30,6 +29,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexDirection: 'row',
     marginBottom: 10,
+    elevation: 3,
   },
 
   planTimeContainer: {
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   },
   planInfoText: {
     color: 'rgba(255, 255, 255, 0.7)',
-    fontSize: 15
+    fontSize: 15,
+    paddingRight: 5,
   }
 });

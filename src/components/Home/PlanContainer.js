@@ -44,7 +44,7 @@ export default class PlanContainer extends Component {
       case 'fällt aus': 
         return {
           color: Colors.sub.Cancelled,
-          subText: plan.hasSubject ? `${plan.fach} bei ` : '' + plan.lehrer,
+          subText: plan.hasSubject ? `${plan.fach} ` : '' + !!plan.lehrer ? `bei ${plan.lehrer}` : '',
         };
       case 'Vertr.':
         return {
