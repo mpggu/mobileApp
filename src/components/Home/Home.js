@@ -35,7 +35,6 @@ export default class Home extends Component {
     try {
       let today = await PlanFetcher.fetchPlan('today');
       let tomorrow = await PlanFetcher.fetchPlan('tomorrow');
-
       if (today) {
         today.data = today.data
           .filter(p => p.klasse === 'Q3/Q4')
@@ -44,18 +43,25 @@ export default class Home extends Component {
             p.vertreter = Teachers[p.vertreter] || p.vertreter;
             return p;
           });
+      } else {
+        today = {
+          data: [] 
+        };
       }
 
       if (tomorrow) {
         tomorrow.data = tomorrow.data
-          .filter(p => p.klasse === 'Eb')
+          .filter(p => p.klasse === 'Q3/Q4')
           .map(p => {
             p.lehrer = Teachers[p.lehrer] || p.lehrer;
             p.vertreter = Teachers[p.vertreter] || p.vertreter;
             return p;
           });        
+      } else {
+        tomorrow = {
+          data: [] 
+        };
       }
-
       this.setState({plan: {today, tomorrow}});
     } catch (err) {
       console.error(err);
@@ -63,7 +69,7 @@ export default class Home extends Component {
   }
 
   render() {
-    if (this.state.plan.today && this.state.plan.tomorrow) {
+    if (this.state.plan.today || this.state.plan.tomorrow) {
       return (
         <View style={styles.container}>
           <Header
