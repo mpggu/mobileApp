@@ -10,12 +10,12 @@ export default class PlanContainer extends Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({
+    this.ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 != r2
     });
 
     this.state = {
-      planDataSource: ds.cloneWithRows(this.props.data.data),
+      planDataSource: this.ds.cloneWithRows(this.props.data.data),
       refreshing: false,
     };
 
@@ -86,7 +86,19 @@ export default class PlanContainer extends Component {
     );
   }
 
-  render() {
+  renderPlan(plan) {
+    const planType = this.transformType(plan);
+
+    return (
+      <Plan 
+        color={planType.color} 
+        subText={planType.subText} 
+        plan={plan}
+      />
+    );
+  }
+
+  defaultRender() {
     const date = moment(this.props.data.date, 'X');
 
     const lastEdited = moment(this.props.data.lastEdited, 'X');
@@ -108,16 +120,32 @@ export default class PlanContainer extends Component {
     );
   }
 
-  renderPlan(plan) {
-    const planType = this.transformType(plan);
+  render() {
+    
 
-    return (
-      <Plan 
-        color={planType.color} 
-        subText={planType.subText} 
-        plan={plan}
-      />
-    );
+    const planNotThere = this.props.data.data === null || this.props.data.data === undefined;
+    const isPlanEmpty = this.props.data.data instanceof Array && this.props.data.data.length === 0;
+
+    console.log(this.props.data.data, planNotThere, isPlanEmpty);
+
+    if (planNotThere || isPlanEmpty) {
+      const when = this.props.today ? 'heute' : 'morgen'
+
+      const message = planNotThere ? `Kein Vertretungsplan für ${when} verfügbar!` : `Du hast ${when} keine Vertretung.`;
+
+      return (
+        <View style={styles.errContainer}>
+          <ListView
+            refreshControl={this.renderRefreshControl()}
+            dataSource={this.ds.cloneWithRows(["I'm literally useless :)"])}
+            renderRow={() => <View />}
+          />
+          <Text style={styles.error}>{message}</Text>
+        </View>
+      )
+    }
+
+    return this.defaultRender();
   }
 }
 
@@ -147,4 +175,15 @@ const styles = StyleSheet.create({
   lastUpdated: {
     textAlign: 'center',
   },
+
+  errContainer: {
+    flex: 1,
+    backgroundColor: Colors.WhiteBG,
+    flexDirection: 'column',
+  },
+  error: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#676767',
+  }
 });

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, NetInfo } from 'react-native';
 
 import PlanFetcher from '../../lib/PlanFetcher';
 
@@ -24,24 +24,37 @@ export default class Home extends Component {
   }
 
   async fetchData() {
+    const isConnected = await NetInfo.isConnected.fetch();
+
+    if (!isConnected) {
+      return setTimeout(() => {
+        this.fetchData();
+      }, 5000);
+    }
+
     try {
       let today = await PlanFetcher.fetchPlan('today');
       let tomorrow = await PlanFetcher.fetchPlan('tomorrow');
 
-      today.data = today.data
-        .filter(p => p.klasse === 'Q3/Q4')
-        .map(p => {
-          p.lehrer = Teachers[p.lehrer] || p.lehrer;
-          p.vertreter = Teachers[p.vertreter] || p.vertreter;
-          return p;
-        });
-      tomorrow.data = tomorrow.data
-        .filter(p => p.klasse === '9A')
-        .map(p => {
-          p.lehrer = Teachers[p.lehrer] || p.lehrer;
-          p.vertreter = Teachers[p.vertreter] || p.vertreter;
-          return p;
-        });
+      if (today) {
+        today.data = today.data
+          .filter(p => p.klasse === 'Q3/Q4')
+          .map(p => {
+            p.lehrer = Teachers[p.lehrer] || p.lehrer;
+            p.vertreter = Teachers[p.vertreter] || p.vertreter;
+            return p;
+          });
+      }
+
+      if (tomorrow) {
+        tomorrow.data = tomorrow.data
+          .filter(p => p.klasse === 'Eb')
+          .map(p => {
+            p.lehrer = Teachers[p.lehrer] || p.lehrer;
+            p.vertreter = Teachers[p.vertreter] || p.vertreter;
+            return p;
+          });        
+      }
 
       this.setState({plan: {today, tomorrow}});
     } catch (err) {
