@@ -66,9 +66,9 @@ export default class PlanContainer extends Component {
 
   async onRefresh() {
     this.setState({ refreshing: true });
-
     try {
-      await this.props.fetchData();
+      await this.props.updateView();
+      this.setState({planDataSource: this.ds.cloneWithRows(this.props.data.data) });
       this.setState({ refreshing: false });
     } catch(err) {
       this.setState({ refreshing: false });
@@ -121,12 +121,8 @@ export default class PlanContainer extends Component {
   }
 
   render() {
-    
-
-    const planNotThere = this.props.data.data === null || this.props.data.data === undefined;
+    const planNotThere = !this.props.data.available;
     const isPlanEmpty = this.props.data.data instanceof Array && this.props.data.data.length === 0;
-
-    console.log(this.props.data.data, planNotThere, isPlanEmpty);
 
     if (planNotThere || isPlanEmpty) {
       const when = this.props.today ? 'heute' : 'morgen'

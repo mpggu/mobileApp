@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, NetInfo } from 'react-native';
+import { StyleSheet, View, Text, NetInfo, NativeModules } from 'react-native';
+import BackgroundJob from 'react-native-background-job';
 
 import PlanFetcher from '../../lib/PlanFetcher';
 
@@ -20,16 +21,66 @@ export default class Home extends Component {
       },
     };
 
-    this.fetchData();
+    this.firstRender = true;
+    this.waitingForUser = false;
+
+    const backgroundJob = {
+      jobKey: "vplanfetch",
+      job: this.registerBackgroundTask.bind(this),
+    };
+
+    const backgroundSchedule = {
+      jobKey: "vplanfetch",
+      timeout: 10000,
+    }
+
+    BackgroundJob.getAll({callback: jobs => {
+      if (!jobs.length) {
+        BackgroundJob.register(backgroundJob);
+        BackgroundJob.schedule(backgroundSchedule);
+      }
+    }});
+    PlanFetcher.on('pushNotification', () => {
+      setTimeout(() => {
+        this.waitingForUser = false;
+        this.updateView();
+      }, 2000);
+    });
+  }
+
+  async registerBackgroundTask() {
+    const data = await this.fetchData();
+    const isActive = NativeModules.AppState.getCurrentAppState === "active";
+    const didPlanUpdate = data.tomorrow !== this.state.plan.tomorrow || data.today !== this.state.plan.today;
+
+    console.log(didPlanUpdate, !this.firstRender, !this.waitingForUser, !isActive);
+    console.log(data.plan.tomorrow, this.state.tomorrow, data.plan.today, this.state.today);
+    if (didPlanUpdate && !this.firstRender && !this.waitingForUser && !isActive) {
+      this.waitingForUser = true;
+      PlanFetcher.sendPushNotification('Neuer Vertretungsplan verfügbar!');
+    }
+  }
+
+  componentWillMount() {
+    this.updateView();
+  }
+
+  async updateView() {
+    const data = await this.fetchData();
+
+    if (!data) {
+      return setTimeout(this.updateView.bind(this), 5000);
+    }
+
+    this.setState(data);
+    this.firstRender = false;
   }
 
   async fetchData() {
     const isConnected = await NetInfo.isConnected.fetch();
 
     if (!isConnected) {
-      return setTimeout(() => {
-        this.fetchData();
-      }, 5000);
+      return null;
     }
 
     try {
@@ -43,9 +94,11 @@ export default class Home extends Component {
             p.vertreter = Teachers[p.vertreter] || p.vertreter;
             return p;
           });
+        today.available = true;
       } else {
         today = {
-          data: [] 
+          data: [],
+          available: false, 
         };
       }
 
@@ -56,15 +109,17 @@ export default class Home extends Component {
             p.lehrer = Teachers[p.lehrer] || p.lehrer;
             p.vertreter = Teachers[p.vertreter] || p.vertreter;
             return p;
-          });        
+          });
+        tomorrow.available = true;      
       } else {
         tomorrow = {
-          data: [] 
+          data: [],
+          available: false,
         };
       }
-      this.setState({plan: {today, tomorrow}});
+      return {plan: {today, tomorrow}};
     } catch (err) {
-      console.error(err);
+      return null;
     }
   }
 
@@ -73,7 +128,7 @@ export default class Home extends Component {
       return (
         <View style={styles.container}>
           <Header
-            fetchData={this.fetchData.bind(this)} 
+            updateView={this.updateView.bind(this)} 
             plan={this.state.plan}
             navigator={this.props.navigator}
           />

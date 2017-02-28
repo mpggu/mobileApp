@@ -3,7 +3,8 @@ import {
   View,
   Navigator,
   Text,
-  Platform
+  Platform,
+  AppRegistry,
 } from 'react-native';
 
 import Login from './components/Login/Login';

@@ -52,7 +52,7 @@ export default class Header extends Component {
   renderScene = ({ route }) => {
     return (
       <PlanContainer 
-        fetchData={this.props.fetchData}
+        updateView={this.props.updateView}
         today={route.key === '1'}
         data={this.props.plan[route.key === '1' ? 'today' : 'tomorrow']}
       />
