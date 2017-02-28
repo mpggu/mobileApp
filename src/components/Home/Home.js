@@ -34,9 +34,10 @@ export default class Home extends Component {
       timeout: 10000,
     }
 
+
+    BackgroundJob.register(backgroundJob);
     BackgroundJob.getAll({callback: jobs => {
       if (!jobs.length) {
-        BackgroundJob.register(backgroundJob);
         BackgroundJob.schedule(backgroundSchedule);
       }
     }});
