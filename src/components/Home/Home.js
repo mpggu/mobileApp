@@ -36,26 +36,21 @@ export default class Home extends Component {
 
 
     BackgroundJob.register(backgroundJob);
-    BackgroundJob.getAll({callback: jobs => {
-      if (!jobs.length) {
-        BackgroundJob.schedule(backgroundSchedule);
-      }
-    }});
+    BackgroundJob.schedule(backgroundSchedule);
+
     PlanFetcher.on('pushNotification', () => {
       setTimeout(() => {
         this.waitingForUser = false;
         this.updateView();
-      }, 2000);
+      }, 1000);
     });
   }
 
   async registerBackgroundTask() {
     const data = await this.fetchData();
     const isActive = NativeModules.AppState.getCurrentAppState === "active";
-    const didPlanUpdate = data.tomorrow !== this.state.plan.tomorrow || data.today !== this.state.plan.today;
+    const didPlanUpdate = data && data.plan.tomorrow.data !== this.state.plan.tomorrow.data || (data.plan.today.data !== this.state.plan.today.data && data.plan.today.data !== this.state.plan.tomorrow.data);
 
-    console.log(didPlanUpdate, !this.firstRender, !this.waitingForUser, !isActive);
-    console.log(data.plan.tomorrow, this.state.tomorrow, data.plan.today, this.state.today);
     if (didPlanUpdate && !this.firstRender && !this.waitingForUser && !isActive) {
       this.waitingForUser = true;
       PlanFetcher.sendPushNotification('Neuer Vertretungsplan verfügbar!');
