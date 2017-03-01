@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import App from './src/App';
-import { AppRegistry, Text, View } from 'react-native';
+import { AppRegistry } from 'react-native';
+
+import BackgroundJob from 'react-native-background-job';
+
+import { backgroundFetch } from './src/lib/PlanFetcher';
+
+BackgroundJob.register({
+  jobKey: "vplanfetch",
+  job: backgroundFetch, 
+});
 
 export default class mobileApp extends Component {
   render() {

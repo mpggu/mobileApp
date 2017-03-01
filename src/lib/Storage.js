@@ -9,9 +9,19 @@ export default new (class Storage {
 
   logIn() {
     AsyncStorage.setItem('@Root:isLoggedIn', 'true');
+    this.setPlan(null);
   }
 
   logOut() {
     AsyncStorage.setItem('@Root:isLoggedIn', 'false');
+  }
+
+  setPlan(data) {
+    AsyncStorage.setItem('@Plan:data', JSON.stringify(data));
+  }
+
+  async getPlan() {
+    const plan = await AsyncStorage.getItem('@Plan:data');
+    return JSON.parse(plan);
   }
 })();

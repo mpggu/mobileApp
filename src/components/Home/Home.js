@@ -3,12 +3,11 @@ import { StyleSheet, View, Text, NetInfo, NativeModules } from 'react-native';
 import BackgroundJob from 'react-native-background-job';
 
 import PlanFetcher from '../../lib/PlanFetcher';
+import Storage from '../../lib/Storage';
 
 import Header from './Header';
 import LoadingScreen from '../LoadingScreen';
 import PullToRefresh from './PullToRefresh';
-
-import { Teachers } from '../../Constants';
 
 export default class Home extends Component {
   constructor(props) {
@@ -21,102 +20,35 @@ export default class Home extends Component {
       },
     };
 
-    this.firstRender = true;
-    this.waitingForUser = false;
-
-    const backgroundJob = {
-      jobKey: "vplanfetch",
-      job: this.registerBackgroundTask.bind(this),
-    };
-
-    const backgroundSchedule = {
-      jobKey: "vplanfetch",
-      timeout: 10000,
-    }
-
-
-    BackgroundJob.register(backgroundJob);
-    BackgroundJob.schedule(backgroundSchedule);
-
     PlanFetcher.on('pushNotification', () => {
       setTimeout(() => {
-        this.waitingForUser = false;
         this.updateView();
       }, 1000);
     });
   }
 
-  async registerBackgroundTask() {
-    const data = await this.fetchData();
-    const isActive = NativeModules.AppState.getCurrentAppState === "active";
-    const didPlanUpdate = data && data.plan.tomorrow.data !== this.state.plan.tomorrow.data || (data.plan.today.data !== this.state.plan.today.data && data.plan.today.data !== this.state.plan.tomorrow.data);
-
-    if (didPlanUpdate && !this.firstRender && !this.waitingForUser && !isActive) {
-      this.waitingForUser = true;
-      PlanFetcher.sendPushNotification('Neuer Vertretungsplan verfügbar!');
-    }
-  }
-
   componentWillMount() {
     this.updateView();
+    BackgroundJob.getAll({callback: plans => {
+      if (plans.length) {
+        BackgroundJob.cancelAll();
+      }
+      BackgroundJob.schedule({
+        jobKey: 'vplanfetch',
+        timeout: 15000,
+      });
+    }});
   }
 
   async updateView() {
-    const data = await this.fetchData();
+    const data = await PlanFetcher.getPlan();
 
     if (!data) {
       return setTimeout(this.updateView.bind(this), 5000);
     }
 
+    Storage.setPlan(data);
     this.setState(data);
-    this.firstRender = false;
-  }
-
-  async fetchData() {
-    const isConnected = await NetInfo.isConnected.fetch();
-
-    if (!isConnected) {
-      return null;
-    }
-
-    try {
-      let today = await PlanFetcher.fetchPlan('today');
-      let tomorrow = await PlanFetcher.fetchPlan('tomorrow');
-      if (today) {
-        today.data = today.data
-          .filter(p => p.klasse === 'Q3/Q4')
-          .map(p => {
-            p.lehrer = Teachers[p.lehrer] || p.lehrer;
-            p.vertreter = Teachers[p.vertreter] || p.vertreter;
-            return p;
-          });
-        today.available = true;
-      } else {
-        today = {
-          data: [],
-          available: false, 
-        };
-      }
-
-      if (tomorrow) {
-        tomorrow.data = tomorrow.data
-          .filter(p => p.klasse === 'Q3/Q4')
-          .map(p => {
-            p.lehrer = Teachers[p.lehrer] || p.lehrer;
-            p.vertreter = Teachers[p.vertreter] || p.vertreter;
-            return p;
-          });
-        tomorrow.available = true;      
-      } else {
-        tomorrow = {
-          data: [],
-          available: false,
-        };
-      }
-      return {plan: {today, tomorrow}};
-    } catch (err) {
-      return null;
-    }
   }
 
   render() {
