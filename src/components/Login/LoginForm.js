@@ -57,7 +57,7 @@ export default class LoginForm extends Component {
         // err message
       }
 
-      Storage.logIn();
+      Storage.logIn('Q1/Q2');
 
       this.redirect('Home');
     }

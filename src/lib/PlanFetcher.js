@@ -4,16 +4,21 @@ import { NetInfo, NativeModules } from 'react-native';
 import { EventEmitter } from 'events';
 import Storage from './Storage';
 
-import PushNotification from "react-native-push-notification";
+import PushNotification from 'react-native-push-notification';
 import BackgroundJob from 'react-native-background-job';
 
-import { API_URL } from "../Constants"
-import { Teachers } from '../Constants';
+import { API_URL, Teachers } from '../Constants';
 
 class PlanFetcher extends EventEmitter {
   constructor() {
     super();
     this.initPushNotifications();
+    this.setCourse();
+  }
+
+  async setCourse() {
+    const course = await Storage.getCourse();
+    this.course = course;
   }
 
   initPushNotifications() {
@@ -48,7 +53,8 @@ class PlanFetcher extends EventEmitter {
   }
 
   async fetchPlan(when) {
-    const URL = `${API_URL}vplan/${when}`;
+    let URL = `${API_URL}vplan/${when}/`;
+    URL += this.course.substring(0, 2) || '';
 
     try {
       const response = await fetch(URL);
@@ -65,14 +71,13 @@ class PlanFetcher extends EventEmitter {
     if (!isConnected) {
       return null;
     }
-
+    
     try {
       let today = await this.fetchPlan('today');
       let tomorrow = await this.fetchPlan('tomorrow');
 
       if (today) {
         today.data = today.data
-          .filter(p => p.klasse === 'Q3/Q4')
           .map(p => {
             p.lehrer = Teachers[p.lehrer] || p.lehrer;
             p.vertreter = Teachers[p.vertreter] || p.vertreter;
@@ -88,7 +93,6 @@ class PlanFetcher extends EventEmitter {
 
       if (tomorrow) {
         tomorrow.data = tomorrow.data
-          .filter(p => p.klasse === 'Q3/Q4')
           .map(p => {
             p.lehrer = Teachers[p.lehrer] || p.lehrer;
             p.vertreter = Teachers[p.vertreter] || p.vertreter;
@@ -120,13 +124,12 @@ const backgroundFetch = async () => {
 
   const isActive = NativeModules.AppState.getCurrentAppState === 'active';
 
-  console.log("test");
   if (!newPlan) {
     return;
   }
 
   const didTommorowUpdate = !planFetcher.isSamePlanArray(newPlan.plan.tomorrow.data, oldPlan.plan.tomorrow.data);
-  const didTodayUpdate = !planFetcher.isSamePlanArray(newPlan.plan.today.data !== oldPlan.plan.today.data) && !planFetcher.isSamePlanArray(newPlan.plan.today.data, oldPlan.plan.tomorrow.data);
+  const didTodayUpdate = !planFetcher.isSamePlanArray(newPlan.plan.today.data, oldPlan.plan.today.data) && !planFetcher.isSamePlanArray(newPlan.plan.today.data, oldPlan.plan.tomorrow.data);
   const didPlanUpdate = didTommorowUpdate || didTodayUpdate;
 
   if (didPlanUpdate && !isActive) {

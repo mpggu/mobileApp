@@ -7,17 +7,28 @@ export default new (class Storage {
    return await AsyncStorage.getItem('@Root:isLoggedIn') === 'true';
   }
 
-  logIn() {
+  logIn(course) {
     AsyncStorage.setItem('@Root:isLoggedIn', 'true');
+    this.setCourse(course);
     this.setPlan(null);
   }
 
   logOut() {
     AsyncStorage.setItem('@Root:isLoggedIn', 'false');
+    this.setCourse('');
   }
 
   setPlan(data) {
     AsyncStorage.setItem('@Plan:data', JSON.stringify(data));
+  }
+
+  setCourse(course) {
+    AsyncStorage.setItem('@Root:course', course);
+  }
+
+  async getCourse() {
+    const course = await AsyncStorage.getItem('@Root:course');
+    return course;
   }
 
   async getPlan() {
