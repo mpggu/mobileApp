@@ -10,9 +10,12 @@ import {
   StatusBar,
   ActivityIndicator,
   Alert,
+  Picker,
 } from 'react-native';
 
 import Storage from '../../lib/Storage';
+
+import { Grades } from '../../Constants';
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -20,7 +23,8 @@ export default class LoginForm extends Component {
     this.state = {
       pendingLoginRequest: false,
       username: '',
-      password: ''
+      password: '',
+      grade: '5A',
     }
   }
 
@@ -54,11 +58,10 @@ export default class LoginForm extends Component {
           { cancelable: true }
         );
         return this.toggleLogin();
-        // err message
       }
 
-      Storage.logIn('Q1/Q2');
-
+      Storage.logIn(this.state.grade);
+      
       this.redirect('Home');
     }
   }
@@ -79,6 +82,15 @@ export default class LoginForm extends Component {
           animated
           backgroundColor={Colors.Blue}
         />
+        <Picker
+          selectedValue={this.state.grade}
+          onValueChange={grade => this.setState({ grade })}
+          style={styles.input}
+        >
+          {Grades.map(grade => 
+            <Picker.Item label={grade} value={grade} key={grade}/>
+          )}
+        </Picker>
         <TextInput
           placeholder="Benutzername"
           placeholderTextColor= "rgba(255, 255, 255, 0.7)"
@@ -141,5 +153,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20
-  }
+  },
 });

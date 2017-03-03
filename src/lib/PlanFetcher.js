@@ -41,6 +41,8 @@ class PlanFetcher extends EventEmitter {
   }
 
   isSamePlanArray(a, b) {
+    if (a.length !== b.length) return false;
+
     for (let i = 0; i < a.length; i++) {
       const props = Object.getOwnPropertyNames(a[i]);
       for (let j = 0; j < props.length; j++) {
@@ -133,7 +135,6 @@ const backgroundFetch = async () => {
   const didPlanUpdate = didTommorowUpdate || didTodayUpdate;
 
   if (didPlanUpdate && !isActive) {
-    console.log(didTommorowUpdate, didTodayUpdate, isActive, newPlan, oldPlan);
     Storage.setPlan(newPlan);
     planFetcher.sendPushNotification(`Neuer Vertretungspan für ${didTodayUpdate ? 'heute' : 'morgen'} verfügbar`);
   }

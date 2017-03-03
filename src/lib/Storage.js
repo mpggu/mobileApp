@@ -1,6 +1,7 @@
 'use strict';
 
 import { AsyncStorage } from 'react-native';
+import BackgroundJob from 'react-native-background-job';
 
 export default new (class Storage {
   async isLoggedIn() {
@@ -16,6 +17,7 @@ export default new (class Storage {
   logOut() {
     AsyncStorage.setItem('@Root:isLoggedIn', 'false');
     this.setCourse('');
+    BackgroundJob.cancelAll();
   }
 
   setPlan(data) {

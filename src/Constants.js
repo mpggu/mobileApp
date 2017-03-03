@@ -11,7 +11,16 @@ export const Colors = {
   },
 }
 
-export const Grades = ['5', '6', '7', '8', '9'];
+export const Grades = [
+  '5A', '5B', '5C', '5D', '5E', '5F',
+  '6A', '6B', '6C', '6D', '6E', '6F',
+  '7A', '7B', '7C', '7D', '7E', '7F',
+  '8A', '8B', '8C', '8D', '8E', '8F',
+  '9A', '9B', '9C', '9D', '9E', '9F',
+  'EA', 'EB', 'EC', 'ED', 'EE', 'EF',
+  'Q1/Q2',
+  'Q3/Q4',
+];
 
 // Definitely make this dynamic
 export const Teachers = {

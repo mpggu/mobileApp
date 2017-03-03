@@ -114,6 +114,7 @@ export default class PlanContainer extends Component {
             refreshControl={this.renderRefreshControl()}
             dataSource={this.state.planDataSource}
             renderRow={this.renderPlan.bind(this)}
+            enableEmptySections
           />
         </View>
       </View>
