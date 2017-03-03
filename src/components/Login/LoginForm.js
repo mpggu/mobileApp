@@ -60,9 +60,8 @@ export default class LoginForm extends Component {
         return this.toggleLogin();
       }
 
-      Storage.logIn(this.state.grade);
-      
-      this.redirect('Home');
+      Storage.logIn(this.state.grade)
+      .then(() => this.redirect('Home'));
     }
   }
 

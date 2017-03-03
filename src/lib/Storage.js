@@ -8,10 +8,11 @@ export default new (class Storage {
    return await AsyncStorage.getItem('@Root:isLoggedIn') === 'true';
   }
 
-  logIn(course) {
+  async logIn(course) {
     AsyncStorage.setItem('@Root:isLoggedIn', 'true');
     this.setCourse(course);
     this.setPlan(null);
+    return true;
   }
 
   logOut() {

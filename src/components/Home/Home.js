@@ -27,7 +27,9 @@ export default class Home extends Component {
     });
   }
 
-  componentWillMount() {
+  async componentWillMount() {
+    await PlanFetcher.updateCourse();
+
     this.updateView();
     BackgroundJob.getAll({callback: plans => {
       if (plans.length) {
