@@ -74,7 +74,7 @@ export default class Header extends Component {
             onPress={this.logOutPressed}
           >
             <Icon 
-              name="sign-out" 
+              name="cog" 
               size={25} 
               color="white"
             />

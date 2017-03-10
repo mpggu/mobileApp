@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, Image, ActivityIndicator, Dimensions } from 'react-native';
 import { Colors } from '../../Constants';
 import LoginForm from './LoginForm';
+
+const { width, height } = Dimensions.get('window');
 
 export default class Login extends Component {
   render() {
@@ -33,14 +35,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   logo: {
-    width: 400,
-    height: 350
-  },
-  title: {
-    color: 'white',
-    marginTop: 10,
-    width: 170,
-    textAlign: 'center'
+    width: width / 1.0275,
+    height: height / 2.085,
   }
 });
 

@@ -29,15 +29,18 @@ export default class Home extends Component {
 
   async componentWillMount() {
     await PlanFetcher.updateCourse();
-
+    const pushEnabled = await Storage.getPushNotificationsEnabled();
     this.updateView();
+
+    if (!pushEnabled) return;
+    
     BackgroundJob.getAll({callback: plans => {
       if (plans.length) {
         BackgroundJob.cancelAll();
       }
       BackgroundJob.schedule({
         jobKey: 'vplanfetch',
-        timeout: 15000,
+        timeout: 10000,
       });
     }});
   }

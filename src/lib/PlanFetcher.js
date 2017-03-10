@@ -132,7 +132,7 @@ const backgroundFetch = async () => {
     return;
   }
 
-  const didTommorowUpdate = !planFetcher.isSamePlanArray(newPlan.plan.tomorrow.data, oldPlan.plan.tomorrow.data);
+  const didTommorowUpdate = newPlan.plan.tomorrow.available && !planFetcher.isSamePlanArray(newPlan.plan.tomorrow.data, oldPlan.plan.tomorrow.data);
   const didTodayUpdate = !planFetcher.isSamePlanArray(newPlan.plan.today.data, oldPlan.plan.today.data) && !planFetcher.isSamePlanArray(newPlan.plan.today.data, oldPlan.plan.tomorrow.data);
   const didPlanUpdate = didTommorowUpdate || didTodayUpdate;
 

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Text, Image, StatusBar, Dimensions } from 'react-native';
 
 import Storage from '../lib/Storage';
 
 import { Colors } from '../Constants';
+
+
+const { width, height } = Dimensions.get('window');
 
 export default class Home extends Component {
   
@@ -48,8 +51,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   image: {
-    width: 300,
-    height: 200,
+    width: width / 1.37,
+    height: height / 3.65,
   }
 });
 

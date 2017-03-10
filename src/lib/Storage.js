@@ -8,17 +8,21 @@ export default new (class Storage {
    return await AsyncStorage.getItem('@Root:isLoggedIn') === 'true';
   }
 
-  async logIn(course) {
+  async logIn(course, pushNotificationsEnabled) {
     AsyncStorage.setItem('@Root:isLoggedIn', 'true');
     this.setCourse(course);
+    this.setPushNotificationsEnabled(pushNotificationsEnabled);
     this.setPlan(null);
     return true;
   }
 
   logOut() {
     AsyncStorage.setItem('@Root:isLoggedIn', 'false');
-    this.setCourse('');
     BackgroundJob.cancelAll();
+  }
+
+  setPushNotificationsEnabled(data) {
+    AsyncStorage.setItem('@Root:pushNotificationsEnabled', JSON.stringify(data));
   }
 
   setPlan(data) {
@@ -27,6 +31,11 @@ export default new (class Storage {
 
   setCourse(course) {
     AsyncStorage.setItem('@Root:course', course);
+  }
+
+  async getPushNotificationsEnabled() {
+    const pushNotifications = await AsyncStorage.getItem('@Root:pushNotificationsEnabled');
+    return JSON.parse(pushNotifications);
   }
 
   async getCourse() {
