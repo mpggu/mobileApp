@@ -7,11 +7,13 @@ import {
   AppRegistry,
 } from 'react-native';
 
+import codePush from 'react-native-code-push';
+
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import LoadingScreen from './components/LoadingScreen';
 
-export default class App extends Component {
+class App extends Component {
 
   renderScene(route, navigator) {
     switch (route.name) {
@@ -34,3 +36,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default codePush(App);

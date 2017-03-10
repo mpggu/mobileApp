@@ -48,6 +48,8 @@
 		3CAB01200A1F40DE81CC6204 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0AC8226E5DF493C90C117AE /* Zocial.ttf */; };
 		21D805B626B64CAC98416ED1 /* libRNBackgroundJob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A971196926CC4447891A3722 /* libRNBackgroundJob.a */; };
 		DFB2B61046D348F7845A9637 /* libRNBackgroundFetch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E63142582A4E3E91CA5682 /* libRNBackgroundFetch.a */; };
+		B18DF2EB10D1454795AB67E8 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F03042DBF74377846C943E /* libCodePush.a */; };
+		09F0ADBEA9874DA3A45E63B4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 948251C2F96B4FC894838ECC /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,6 +285,9 @@
 		A971196926CC4447891A3722 /* libRNBackgroundJob.a */ = {isa = PBXFileReference; name = "libRNBackgroundJob.a"; path = "libRNBackgroundJob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		6C97FCD7000D48DA92CCF6A6 /* RNBackgroundFetch.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundFetch.xcodeproj"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		D1E63142582A4E3E91CA5682 /* libRNBackgroundFetch.a */ = {isa = PBXFileReference; name = "libRNBackgroundFetch.a"; path = "libRNBackgroundFetch.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		2203E90308BF4922ACDEF429 /* CodePush.xcodeproj */ = {isa = PBXFileReference; name = "CodePush.xcodeproj"; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		B5F03042DBF74377846C943E /* libCodePush.a */ = {isa = PBXFileReference; name = "libCodePush.a"; path = "libCodePush.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		948251C2F96B4FC894838ECC /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +317,8 @@
 				06E566DCB9CA4473903B99B6 /* libRNVectorIcons.a in Frameworks */,
 				21D805B626B64CAC98416ED1 /* libRNBackgroundJob.a in Frameworks */,
 				DFB2B61046D348F7845A9637 /* libRNBackgroundFetch.a in Frameworks */,
+				B18DF2EB10D1454795AB67E8 /* libCodePush.a in Frameworks */,
+				09F0ADBEA9874DA3A45E63B4 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +488,7 @@
 				D159458033ED447E8DD6C39D /* RNVectorIcons.xcodeproj */,
 				F3193DFC5CD44614BEE5FE5E /* RNBackgroundJob.xcodeproj */,
 				6C97FCD7000D48DA92CCF6A6 /* RNBackgroundFetch.xcodeproj */,
+				2203E90308BF4922ACDEF429 /* CodePush.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -502,6 +510,7 @@
 				00E356EF1AD99517003FC87E /* mobileAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				67CA27AF0E7C42CCA2DF81B1 /* Resources */,
+				545D944458B448269C0740F7 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -533,6 +542,15 @@
 				A0AC8226E5DF493C90C117AE /* Zocial.ttf */,
 			);
 			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
+		545D944458B448269C0740F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				948251C2F96B4FC894838ECC /* libz.tbd */,
+			);
+			name = Frameworks;
 			path = "";
 			sourceTree = "<group>";
 		};
@@ -1040,6 +1058,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1060,6 +1079,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mobileApp.app/mobileApp";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1130,6 +1150,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1162,6 +1183,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;
@@ -1189,6 +1211,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1213,6 +1236,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

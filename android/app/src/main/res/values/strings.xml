@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">pTW5F7d_wTofgqBm8vikxZN6pusFEyekRaj9G</string>
     <string name="app_name">MPG VPlan</string>
 </resources>
