@@ -32,12 +32,12 @@ export default class Home extends Component {
     const pushEnabled = await Storage.getPushNotificationsEnabled();
     this.updateView();
 
-    if (!pushEnabled) return;
-    
     BackgroundJob.getAll({callback: plans => {
       if (plans.length) {
         BackgroundJob.cancelAll();
       }
+      // Explicit type check, consider null
+      if (pushEnabled === false) return;
       BackgroundJob.schedule({
         jobKey: 'vplanfetch',
         timeout: 10000,
