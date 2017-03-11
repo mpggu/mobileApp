@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, ListView, RefreshControl } from 'react-native';
 import Plan from './Plan';
 
+import parseSubject from '../../lib/parseSubject';
+
 import moment from 'moment';
 
 import { Colors } from '../../Constants';
@@ -25,26 +27,24 @@ export default class PlanContainer extends Component {
   handleUnknown(plan) {
     let text = plan.hasSubject ? `${plan.fach} bei ` : '';
     text += plan.lehrer;
-    text += plan.hasSubstitute ? ` vertreten durch ${plan.vertreter} ` : ' ';
-    text += `in ${plan.raum}`;
+    text += plan.hasSubstitute ? ` vertreten durch ${plan.vertreter}` : '';
+    text += !!plan.raum ? ` in ${plan.raum}` : '';
 
     return text;
   }
   
   transformType(plan) {
+    plan.fach = parseSubject(plan);
+
     plan.hasSubject = !!plan.fach;
     plan.hasSubstitute = plan.vertreter !== '+' && plan.vertreter !== plan.lehrer;
 
     switch(plan.art) {
       case 'EVA':
-        return {
-          color: Colors.sub.Cancelled,
-          subText: plan.lehrer,
-        };
       case 'fällt aus': 
         return {
           color: Colors.sub.Cancelled,
-          subText: plan.hasSubject ? `${plan.fach} ` : '' + !!plan.lehrer ? `bei ${plan.lehrer}` : '',
+          subText: (plan.hasSubject ? `${plan.fach} bei ` : '') + (!!plan.lehrer ? `${plan.lehrer}` : ''),
         };
       case 'Vertr.':
         return {

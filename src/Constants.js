@@ -20,7 +20,36 @@ export const Grades = [
   'EA', 'EB', 'EC', 'ED', 'EE', 'EF',
   'Q1/Q2',
   'Q3/Q4',
+  'Alle',
 ];
+
+export const Subjects = {
+  'm': 'Mathe',
+  'd': 'Deutsch',
+  'f': 'Französisch',
+  'e': 'Englisch',
+  'ph': 'Physik',
+  'reli ev.': 'Evang. Religion',
+  'ek': 'Erdkunde',
+  'dsp': 'Darstellendes Spiel',
+  'ch': 'Chemie',
+  'mu': 'Musik',
+  'pw': 'PoWi',
+  'bio': 'Biologie',
+  'info': 'Informatik',
+  'buisen': 'Business Englisch',
+  'kl': 'Klassenlehrerstunde',
+  'g': 'Geschichte',
+  'ku': 'Kunst',
+  'l': 'Latein',
+  'rka': 'Kath. Religion',
+  'rev': 'Evang. Religion',
+  'spo': 'Sport',
+  'spa': 'Spanisch',
+  'ethi': 'Ethik',
+  'eth': 'Ethik',
+  'sss': 'Schulseelsorge',
+}
 
 // Definitely make this dynamic
 export const Teachers = {

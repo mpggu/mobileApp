@@ -52,7 +52,8 @@ export default class LoginForm extends Component {
     if (!this.state.pendingLoginRequest) {
       this.toggleLogin();
 
-      Storage.logIn(this.state.grade, this.state.pushNotifications)
+      const grade = this.state.grade === 'Alle' ? '' : this.state.grade;
+      Storage.logIn(grade, this.state.pushNotifications)
       .then(() => this.redirect('Home'));
     }
   }
