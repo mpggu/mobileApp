@@ -7,6 +7,7 @@
     "test": "jest",
     "devtools": "react-devtools",
     "buildRelease": "cd android && ./gradlew assembleRelease",
+    "buildReleaseWin": "cd android && gradlew assembleRelease",
     "pushAndroid": "code-push release-react MPG android",
     "pushIOS": "code-push release-react MPG ios" 
   },
