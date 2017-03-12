@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.evollu.react.fa.FIRAnalyticsPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.pilloxa.backgroundjob.BackgroundJobPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -35,6 +37,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNDeviceInfo(),
+            new FIRAnalyticsPackage(),
             new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new BackgroundJobPackage(),
           new VectorIconsPackage(),

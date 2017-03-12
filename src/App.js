@@ -8,12 +8,18 @@ import {
 } from 'react-native';
 
 import codePush from 'react-native-code-push';
+import DeviceInfo from 'react-native-device-info';
+import Analytics from 'react-native-firebase-analytics';
 
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import LoadingScreen from './components/LoadingScreen';
 
 class App extends Component {
+
+  componentWillMount() {
+    Analytics.setUserId(DeviceInfo.getUniqueID());
+  }
 
   renderScene(route, navigator) {
     switch (route.name) {
