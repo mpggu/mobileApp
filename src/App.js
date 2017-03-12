@@ -19,6 +19,7 @@ class App extends Component {
 
   componentWillMount() {
     Analytics.setUserId(DeviceInfo.getUniqueID());
+    Analytics.setEnabled(true);
   }
 
   renderScene(route, navigator) {
