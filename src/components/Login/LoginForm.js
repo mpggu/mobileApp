@@ -123,7 +123,7 @@ export default class LoginForm extends Component {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    marginBottom: 15
+    marginBottom: 5,
   },
   pushView: {
     flexDirection: 'row',

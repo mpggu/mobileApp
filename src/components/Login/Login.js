@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, Image, ActivityIndicator, Dimensions } from 're
 import { Colors } from '../../Constants';
 import LoginForm from './LoginForm';
 
+const VERSION = require('../../../package.json').version;
+
 const { width, height } = Dimensions.get('window');
 
 export default class Login extends Component {
@@ -19,6 +21,9 @@ export default class Login extends Component {
         <View style={styles.formContainer}>
           <LoginForm navigator={this.props.navigator} />
         </View>
+        <Text style={styles.version}>
+          v{VERSION}
+        </Text>
       </View>
     );
   }
@@ -37,6 +42,12 @@ const styles = StyleSheet.create({
   logo: {
     width: width / 1.0275,
     height: height / 2.085,
+  },
+  version: {
+    color: 'rgba(255, 255, 255, 0.2)',
+    alignSelf: 'flex-end',
+    marginBottom: 2,
+    marginRight: 5,
   }
 });
 
