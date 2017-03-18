@@ -19,6 +19,7 @@ class PlanFetcher extends EventEmitter {
   async updateCourse() {
     const course = await Storage.getCourse();
     this.course = course;
+    return course;
   }
 
   initPushNotifications() {
@@ -55,8 +56,9 @@ class PlanFetcher extends EventEmitter {
   }
 
   async fetchPlan(when) {
+    const course = this.course || this.updateCourse();
     let URL = `${API_URL}vplan/${when}/`;
-    URL += this.course && this.course !== 'Alle' ? this.course.substring(0, 2) : '';
+    URL += course && course !== 'Alle' ? course.substring(0, 2) : '';
 
     console.log(URL);
 
