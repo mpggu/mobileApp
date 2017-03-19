@@ -135,12 +135,29 @@ const backgroundFetch = async () => {
   }
 
   const didTommorowUpdate = newPlan.plan.tomorrow.available && !planFetcher.isSamePlanArray(newPlan.plan.tomorrow.data, oldPlan.plan.tomorrow.data);
-  const didTodayUpdate = !planFetcher.isSamePlanArray(newPlan.plan.today.data, oldPlan.plan.today.data) && !planFetcher.isSamePlanArray(newPlan.plan.today.data, oldPlan.plan.tomorrow.data);
+  const didTodayUpdate = newPlan.plan.today.available && !planFetcher.isSamePlanArray(newPlan.plan.today.data, oldPlan.plan.today.data) && !planFetcher.isSamePlanArray(newPlan.plan.today.data, oldPlan.plan.tomorrow.data);
   const didPlanUpdate = didTommorowUpdate || didTodayUpdate;
 
   if (didPlanUpdate && !isActive) {
     Storage.setPlan(newPlan);
-    planFetcher.sendPushNotification(`Neuer Vertretungspan für ${didTodayUpdate ? 'heute' : 'morgen'} verfügbar`);
+    
+    let text = '';
+
+    switch (true) {
+      case didTodayUpdate && didTodayUpdate:
+        text = 'heute und morgen';
+        break;
+      case didTodayUpdate:
+        text = 'heute';
+        break;
+      case didTommorowUpdate:
+        text = 'morgen';
+        break;
+      default:
+        text = 'irgendwann';
+    }
+
+    planFetcher.sendPushNotification(`Neuer Vertretungspan für ${text} verfügbar!`);
   }
 };
 
