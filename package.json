@@ -22,15 +22,14 @@
     "react-native-code-push": "^1.17.2-beta",
     "react-native-device-info": "^0.10.1",
     "react-native-firebase-analytics": "^3.0.0",
+    "react-native-push-notification": "^2.2.1",
     "react-native-tab-view": "0.0.56",
     "react-native-vector-icons": "^4.0.0"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
-    "jest": "18.1.0",
-    "react-devtools": "^2.0.12",
-    "react-test-renderer": "~15.4.0"
+    "jest": "18.1.0"
   },
   "jest": {
     "preset": "react-native"
