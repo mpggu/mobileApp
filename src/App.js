@@ -11,6 +11,8 @@ import codePush from 'react-native-code-push';
 import DeviceInfo from 'react-native-device-info';
 import Analytics from 'react-native-firebase-analytics';
 
+import Storage from './lib/Storage';
+
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import LoadingScreen from './components/LoadingScreen';
@@ -20,6 +22,14 @@ class App extends Component {
   componentWillMount() {
     Analytics.setUserId(DeviceInfo.getUniqueID());
     Analytics.setEnabled(true);
+    this.setGradeFirebase();
+  }
+
+  async setGradeFirebase() {
+    const course = await Storage.getCourse();
+
+    if (!course) return;
+    Analytics.setUserProperty('grade', course);
   }
 
   renderScene(route, navigator) {
