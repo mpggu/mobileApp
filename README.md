@@ -6,6 +6,7 @@ The companion app for students of the [Max-Planck-Gymnasium](http://mpg-umstadt.
 
 Find it on the iOS App Store here! (Soon™)
 Or on the [Google Play Store here](https://play.google.com/store/apps/details?id=de.mpgumstadt.mpgvplan)!
+For a Windows version, take a look at [this repository](https://github.com/mpggu/mobileAppWin).
 
 Get an always up-to-date and nicely designed representation of the substitution plan, instead of finding out your next four classes are cancelled after an 30 minute long bus drive.
 
