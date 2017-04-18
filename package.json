@@ -17,7 +17,7 @@
     "react": "~15.4.0",
     "react-native": "0.41.2",
     "react-native-background-fetch": "^2.0.3",
-    "react-native-background-job": "^1.1.0",
+    "react-native-background-job": "github:jcarbo/react-native-background-job#feature/min-sdk-version",
     "react-native-check-box": "^1.0.4",
     "react-native-code-push": "^1.17.2-beta",
     "react-native-device-info": "^0.10.1",

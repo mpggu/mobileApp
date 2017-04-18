@@ -46,12 +46,12 @@
 		21A0AF1E59644F7E8FF34559 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28C1545F9C0040E48FC004D6 /* Octicons.ttf */; };
 		C36864549AEE42BC84D27924 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A3129CB145E4184816680B0 /* SimpleLineIcons.ttf */; };
 		3CAB01200A1F40DE81CC6204 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0AC8226E5DF493C90C117AE /* Zocial.ttf */; };
-		21D805B626B64CAC98416ED1 /* libRNBackgroundJob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A971196926CC4447891A3722 /* libRNBackgroundJob.a */; };
 		DFB2B61046D348F7845A9637 /* libRNBackgroundFetch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E63142582A4E3E91CA5682 /* libRNBackgroundFetch.a */; };
 		B18DF2EB10D1454795AB67E8 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F03042DBF74377846C943E /* libCodePush.a */; };
 		09F0ADBEA9874DA3A45E63B4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 948251C2F96B4FC894838ECC /* libz.tbd */; };
 		0A1EA3B23646430E8F4B7A59 /* libRNFIRAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2755916F1340AA921B7EBE /* libRNFIRAnalytics.a */; };
 		7171124B59FB48CABC741738 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DA95F1879BF427F8C5A9C36 /* libRNDeviceInfo.a */; };
+		8DE8A5BDC6B349BF8FBEFD24 /* libRNBackgroundJob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 406B440204A34C75B10C2C0D /* libRNBackgroundJob.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,8 +283,6 @@
 		28C1545F9C0040E48FC004D6 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		9A3129CB145E4184816680B0 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		A0AC8226E5DF493C90C117AE /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		F3193DFC5CD44614BEE5FE5E /* RNBackgroundJob.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundJob.xcodeproj"; path = "../node_modules/react-native-background-job/ios/RNBackgroundJob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		A971196926CC4447891A3722 /* libRNBackgroundJob.a */ = {isa = PBXFileReference; name = "libRNBackgroundJob.a"; path = "libRNBackgroundJob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		6C97FCD7000D48DA92CCF6A6 /* RNBackgroundFetch.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundFetch.xcodeproj"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		D1E63142582A4E3E91CA5682 /* libRNBackgroundFetch.a */ = {isa = PBXFileReference; name = "libRNBackgroundFetch.a"; path = "libRNBackgroundFetch.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		2203E90308BF4922ACDEF429 /* CodePush.xcodeproj */ = {isa = PBXFileReference; name = "CodePush.xcodeproj"; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
@@ -294,6 +292,8 @@
 		0D2755916F1340AA921B7EBE /* libRNFIRAnalytics.a */ = {isa = PBXFileReference; name = "libRNFIRAnalytics.a"; path = "libRNFIRAnalytics.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		42A89C5F40154CC593B7E68A /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		2DA95F1879BF427F8C5A9C36 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		ADDA11CAD10B433EB0B3B786 /* RNBackgroundJob.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundJob.xcodeproj"; path = "../node_modules/react-native-background-job/ios/RNBackgroundJob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		406B440204A34C75B10C2C0D /* libRNBackgroundJob.a */ = {isa = PBXFileReference; name = "libRNBackgroundJob.a"; path = "libRNBackgroundJob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,12 +321,12 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				06E566DCB9CA4473903B99B6 /* libRNVectorIcons.a in Frameworks */,
-				21D805B626B64CAC98416ED1 /* libRNBackgroundJob.a in Frameworks */,
 				DFB2B61046D348F7845A9637 /* libRNBackgroundFetch.a in Frameworks */,
 				B18DF2EB10D1454795AB67E8 /* libCodePush.a in Frameworks */,
 				09F0ADBEA9874DA3A45E63B4 /* libz.tbd in Frameworks */,
 				0A1EA3B23646430E8F4B7A59 /* libRNFIRAnalytics.a in Frameworks */,
 				7171124B59FB48CABC741738 /* libRNDeviceInfo.a in Frameworks */,
+				8DE8A5BDC6B349BF8FBEFD24 /* libRNBackgroundJob.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,11 +494,11 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				D159458033ED447E8DD6C39D /* RNVectorIcons.xcodeproj */,
-				F3193DFC5CD44614BEE5FE5E /* RNBackgroundJob.xcodeproj */,
 				6C97FCD7000D48DA92CCF6A6 /* RNBackgroundFetch.xcodeproj */,
 				2203E90308BF4922ACDEF429 /* CodePush.xcodeproj */,
 				971DDD0D944E4C0EA8CF83F8 /* RNFIRAnalytics.xcodeproj */,
 				42A89C5F40154CC593B7E68A /* RNDeviceInfo.xcodeproj */,
+				ADDA11CAD10B433EB0B3B786 /* RNBackgroundJob.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1066,11 +1066,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1091,11 +1086,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mobileApp.app/mobileApp";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
@@ -1162,11 +1152,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1197,11 +1182,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;
@@ -1227,11 +1207,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1256,11 +1231,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};

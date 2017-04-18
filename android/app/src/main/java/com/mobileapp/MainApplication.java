@@ -35,15 +35,30 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
+      if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+        return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
             new RNDeviceInfo(),
             new FIRAnalyticsPackage(),
             new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new BackgroundJobPackage(),
-          new VectorIconsPackage(),
-          new ReactNativePushNotificationPackage()
+            new VectorIconsPackage(),
+            new ReactNativePushNotificationPackage()
+        );
+      }
+
+      return Arrays.<ReactPackage>asList(
+        new MainReactPackage(),
+        new RNDeviceInfo(),
+        new FIRAnalyticsPackage(),
+        new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
+        new VectorIconsPackage(),
+        new ReactNativePushNotificationPackage()
       );
+
+
+
+      
     }
   };
 

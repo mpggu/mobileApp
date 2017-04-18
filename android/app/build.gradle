@@ -90,8 +90,8 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "de.mpgumstadt.vplan"
-        minSdkVersion 21
+        applicationId "de.mpgumstadt.mpgvplan"
+        minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
