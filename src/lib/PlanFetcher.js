@@ -56,7 +56,7 @@ class PlanFetcher extends EventEmitter {
   }
 
   async fetchPlan(when) {
-    const course = this.course || this.updateCourse();
+    const course = this.course || await this.updateCourse();
     let URL = `${API_URL}vplan/${when}/`;
     URL += course && course !== 'Alle' ? course.substring(0, 2) : '';
 
