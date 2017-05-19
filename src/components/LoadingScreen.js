@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, StatusBar, Dimensions } from 'react-native';
+import { View, Text, Image, StatusBar, Dimensions } from 'react-native';
+
+import { StyleSheet } from '../lib/StyleSheet';
 
 import Storage from '../lib/Storage';
 

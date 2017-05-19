@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, NetInfo, NativeModules } from 'react-native';
+import { View, Text, NetInfo, NativeModules, Platform } from 'react-native';
 import BackgroundJob from 'react-native-background-job';
+import BackgroundFetch from 'react-native-background-fetch';
+
+import { backgroundFetch } from '../../lib/PlanFetcher';
+
+import { StyleSheet } from '../../lib/StyleSheet';
 
 import PlanFetcher from '../../lib/PlanFetcher';
 import Storage from '../../lib/Storage';
@@ -32,17 +37,26 @@ export default class Home extends Component {
     const pushEnabled = await Storage.getPushNotificationsEnabled();
     this.updateView();
 
-    BackgroundJob.getAll({callback: plans => {
-      if (plans.length) {
-        BackgroundJob.cancelAll();
-      }
-      // Explicit type check, consider null
-      if (pushEnabled === false) return;
-      BackgroundJob.schedule({
-        jobKey: 'vplanfetch',
-        timeout: 10000,
-      });
-    }});
+    if (Platform.OS === "android") {
+      return BackgroundJob.getAll({callback: plans => {
+        if (plans.length) {
+          BackgroundJob.cancelAll();
+        }
+        // Explicit type check, consider null
+        if (pushEnabled === false) return;
+        BackgroundJob.schedule({
+          jobKey: 'vplanfetch',
+          timeout: 10000,
+        });
+      }});
+    }
+
+    if (pushEnabled === false) {
+      return BackgroundFetch.stop();
+    }
+    BackgroundFetch.configure({
+      stopOnTerminate: false,
+    }, backgroundFetch, console.error);
   }
 
   async updateView() {

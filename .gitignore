@@ -56,3 +56,5 @@ fastlane/screenshots
 
 # Google analytics data
 google-services.json
+GoogleService-Info.plist
+Pods/

@@ -1,11 +1,10 @@
 'use strict';
 
-import { NetInfo, NativeModules } from 'react-native';
+import { NetInfo, NativeModules, Platform } from 'react-native';
 import { EventEmitter } from 'events';
 import Storage from './Storage';
 
 import PushNotification from 'react-native-push-notification';
-import BackgroundJob from 'react-native-background-job';
 
 import { API_URL, Teachers } from '../Constants';
 
@@ -60,21 +59,23 @@ class PlanFetcher extends EventEmitter {
     let URL = `${API_URL}vplan/${when}/`;
     URL += course && course !== 'Alle' ? course.substring(0, 2) : '';
 
-    console.log(URL);
+    console.info('Pulling new plan..');
 
     try {
       const response = await fetch(URL);
       const responseJson = await response.json();
       return responseJson;
     } catch(error) {
+      console.error(error);
       return error;
     }
   }
 
   async getPlan() {
+    // NetInfo shows weird behaviour on iOS; only android for now.
     const isConnected = await NetInfo.isConnected.fetch();
 
-    if (!isConnected) {
+    if (!isConnected && Platform.OS === 'android') {
       return null;
     }
     

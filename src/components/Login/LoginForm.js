@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Colors } from '../../Constants';
+import { Colors, Grades } from '../../Constants';
 import { 
-  StyleSheet, 
   View,
   TextInput, 
   TouchableOpacity, 
@@ -11,20 +10,22 @@ import {
   ActivityIndicator,
   Alert,
   Picker,
-  Image
+  Image,
+  Platform
 } from 'react-native';
+
+import { StyleSheet } from '../../lib/StyleSheet';
+
 import Checkbox from 'react-native-check-box'
 
 import Storage from '../../lib/Storage';
-
-import { Grades } from '../../Constants';
 
 export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       pendingLoginRequest: false,
-      grade: '5A',
+      grade: Grades[0],
       pushNotifications: true,
     }
   }
@@ -32,7 +33,35 @@ export default class LoginForm extends Component {
   async componentWillMount() {
     const grade = await Storage.getCourse() || '5A';
 
-    this.setState({grade})
+    this.setState({grade});
+  }
+
+  renderPicker() {
+    if (Platform.OS === 'ios') {
+      return (
+        <Picker
+          selectedValue={this.state.grade}
+          onValueChange={grade => this.setState({ grade })}
+          itemStyle={[styles.input, {color: 'white', height: StyleSheet.normalize(100)}]}
+        >
+          {Grades.map(grade => 
+            <Picker.Item label={grade} value={grade} key={grade}/>
+          )}
+        </Picker>
+      );
+    }
+
+    return (
+      <Picker
+        selectedValue={this.state.grade}
+        onValueChange={grade => this.setState({ grade })}
+        style={[styles.input, {color: 'white'}]}
+      >
+        {Grades.map(grade => 
+          <Picker.Item label={grade} value={grade} key={grade}/>
+        )}
+      </Picker>
+    );
   }
 
   toggleLogin() {
@@ -99,15 +128,7 @@ export default class LoginForm extends Component {
                             />}
           />
         </View>
-        <Picker
-          selectedValue={this.state.grade}
-          onValueChange={grade => this.setState({ grade })}
-          style={[styles.input, {color: 'white'}]}
-        >
-          {Grades.map(grade => 
-            <Picker.Item label={grade} value={grade} key={grade}/>
-          )}
-        </Picker>
+        {this.renderPicker()}
         <TouchableOpacity 
           style={styles.buttonContainer} 
           onPress={this.onPressLoginButton.bind(this)}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import { StyleSheet } from '../../lib/StyleSheet';
 
 export default class Plan extends Component {
   constructor(props) {
@@ -30,6 +31,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 10,
     elevation: 3,
+    shadowOffset: {
+      height: 1,
+    },
+    shadowColor: '#333',
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
   },
 
   planTimeContainer: {

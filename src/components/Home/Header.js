@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { 
-  StyleSheet, 
   View, 
   Text, 
   Platform, 
@@ -12,6 +11,8 @@ import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import PlanContainer from './PlanContainer';
+
+import { StyleSheet } from '../../lib/StyleSheet';
 
 import Storage from '../../lib/Storage';
 
@@ -43,7 +44,7 @@ export default class Header extends Component {
     return (
       <TabBar 
         style={{backgroundColor: Colors.Blue}}
-        indicatorStyle={{backgroundColor: Colors.Red, padding: 2}}
+        indicatorStyle={{backgroundColor: Colors.Red, padding: StyleSheet.normalize(2)}}
         {...props} 
       />
     );
@@ -75,7 +76,7 @@ export default class Header extends Component {
           >
             <Icon 
               name="cog" 
-              size={25} 
+              size={StyleSheet.normalize(25)} 
               color="white"
             />
           </TouchableOpacity>

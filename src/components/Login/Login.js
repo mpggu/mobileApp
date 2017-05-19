@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, ActivityIndicator, Dimensions } from 'react-native';
+import { View, Text, Image, ActivityIndicator, Dimensions } from 'react-native';
 import { Colors } from '../../Constants';
 import LoginForm from './LoginForm';
+
+import { StyleSheet } from '../../lib/StyleSheet';
 
 const VERSION = require('../../../package.json').version;
 

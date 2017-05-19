@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ListView, RefreshControl } from 'react-native';
+import { View, Text, ListView, RefreshControl } from 'react-native';
 import Plan from './Plan';
+
+import { StyleSheet } from '../../lib/StyleSheet';
 
 import parseSubject from '../../lib/parseSubject';
 
@@ -171,6 +173,8 @@ const styles = StyleSheet.create({
   },
   lastUpdated: {
     textAlign: 'center',
+    fontSize: 14,
+    color: 'grey',
   },
 
   errContainer: {
