@@ -39,6 +39,7 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* mobileAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* mobileAppTests.m */; };
 		3CAB01200A1F40DE81CC6204 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0AC8226E5DF493C90C117AE /* Zocial.ttf */; };
+		4D06A1FA1ECFB60B00AB6A30 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D06A1F91ECFB60B00AB6A30 /* logo.png */; };
 		4D0BAE6C1ECDC503009F2298 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D0BAE6B1ECDC503009F2298 /* GoogleService-Info.plist */; };
 		4D0BAE6D1ECDC503009F2298 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D0BAE6B1ECDC503009F2298 /* GoogleService-Info.plist */; };
 		4D0BAE6E1ECDC503009F2298 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D0BAE6B1ECDC503009F2298 /* GoogleService-Info.plist */; };
@@ -46,7 +47,6 @@
 		4D0BAEA21ECDD16C009F2298 /* TSBackgroundFetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0BAEA11ECDD16C009F2298 /* TSBackgroundFetch.framework */; };
 		4D0BAEA41ECDD286009F2298 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BAEA31ECDD286009F2298 /* RNBackgroundFetch+AppDelegate.m */; };
 		4DD813C21ECE1B9100DA2477 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD813AA1ECE1B4E00DA2477 /* libRCTPushNotification.a */; };
-		4DD813F81ECE355500DA2477 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DD813F71ECE355500DA2477 /* Images-2.xcassets */; };
 		56221CB148EB42ECAC86D0D6 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51ECB482320C40D7A3399AED /* MaterialIcons.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6D3C6C1C15C44E5B9A4C14B0 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65ED3FB6EC2441DBA1702ACD /* FontAwesome.ttf */; };
@@ -348,12 +348,12 @@
 		406B440204A34C75B10C2C0D /* libRNBackgroundJob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBackgroundJob.a; sourceTree = "<group>"; };
 		42A89C5F40154CC593B7E68A /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		4ADF83ED80A68ADC8352A559 /* Pods-mobileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobileApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-mobileApp/Pods-mobileApp.release.xcconfig"; sourceTree = "<group>"; };
+		4D06A1F91ECFB60B00AB6A30 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../src/images/logo.png; sourceTree = "<group>"; };
 		4D0BAE6B1ECDC503009F2298 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D0BAEA11ECDD16C009F2298 /* TSBackgroundFetch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TSBackgroundFetch.framework; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/TSBackgroundFetch.framework"; sourceTree = "<group>"; };
 		4D0BAEA31ECDD286009F2298 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
 		4DD813871ECE185900DA2477 /* mobileApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = mobileApp.entitlements; path = mobileApp/mobileApp.entitlements; sourceTree = "<group>"; };
 		4DD813991ECE1B4D00DA2477 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
-		4DD813F71ECE355500DA2477 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "mobileApp/Images-2.xcassets"; sourceTree = "<group>"; };
 		51ECB482320C40D7A3399AED /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		65ED3FB6EC2441DBA1702ACD /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -523,6 +523,7 @@
 		13B07FAE1A68108700A75B9A /* mobileApp */ = {
 			isa = PBXGroup;
 			children = (
+				4D06A1F91ECFB60B00AB6A30 /* logo.png */,
 				4DD813871ECE185900DA2477 /* mobileApp.entitlements */,
 				4D0BAE6B1ECDC503009F2298 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -533,7 +534,6 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				4DD813F71ECE355500DA2477 /* Images-2.xcassets */,
 			);
 			name = mobileApp;
 			sourceTree = "<group>";
@@ -1194,9 +1194,9 @@
 			files = (
 				4D0BAE6C1ECDC503009F2298 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				4DD813F81ECE355500DA2477 /* Images-2.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				C2AE163345184DF78E9AEA3C /* Entypo.ttf in Resources */,
+				4D06A1FA1ECFB60B00AB6A30 /* logo.png in Resources */,
 				C1D2F9D8A184407D8288342E /* EvilIcons.ttf in Resources */,
 				6D3C6C1C15C44E5B9A4C14B0 /* FontAwesome.ttf in Resources */,
 				8F2BC215164F4A3E829F0815 /* Foundation.ttf in Resources */,
@@ -1509,11 +1509,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C13BF763BD79982028F9AC3F /* Pods-mobileApp.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = mobileApp/mobileApp.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = E3G3YQAPW8;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
@@ -1535,6 +1537,7 @@
 				);
 				INFOPLIST_FILE = mobileApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1551,10 +1554,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4ADF83ED80A68ADC8352A559 /* Pods-mobileApp.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = mobileApp/mobileApp.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = E3G3YQAPW8;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
@@ -1576,6 +1581,7 @@
 				);
 				INFOPLIST_FILE = mobileApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

@@ -97,6 +97,7 @@ export const Teachers = {
   Kal: "Kaletta",
   Kai: "Kaiser",
   Kas: "Kasper",
+  Kasp: "Kasper", // Teaches are doing a great job at keeping it consistent! /s
   Ker: "Kern",
   Kor: "Korte",
   Kt: "Kottmann",

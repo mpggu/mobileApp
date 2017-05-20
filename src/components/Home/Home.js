@@ -10,6 +10,8 @@ import { StyleSheet } from '../../lib/StyleSheet';
 import PlanFetcher from '../../lib/PlanFetcher';
 import Storage from '../../lib/Storage';
 
+import { Colors } from '../../Constants';
+
 import Header from './Header';
 import LoadingScreen from '../LoadingScreen';
 import PullToRefresh from './PullToRefresh';
@@ -92,6 +94,7 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.Blue,
   }
 });
 
