@@ -8,10 +8,10 @@ export default function parseSubject(plan) {
   }
 
   const grade = plan.klasse;
-  const subject = plan.fach.replace(/\d+/g, '').toLowerCase();
+  let subject = plan.fach.replace(/\d+/g, '').toLowerCase();
 
-  if (grade.startsWith('E')) {
-    return subject.slice(0, -1);
+  if (grade.startsWith('E') && subject[subject.length - 1] === 'e') {
+    subject = subject.slice(0, -1);
   }
 
   return Subjects[subject] || plan.fach;
