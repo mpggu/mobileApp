@@ -4,7 +4,7 @@
 
 The companion app for students of the [Max-Planck-Gymnasium](http://mpg-umstadt.de) in Groß-Umstadt, Hesse. Powered by [React Native](https://facebook.github.io/react-native/)
 
-Find it on the iOS App Store here! (Soon™)
+Find it on the [iOS App Store here](https://itunes.apple.com/de/app/mpg-vplan/id1238944287?mt=8)!
 Or on the [Google Play Store here](https://play.google.com/store/apps/details?id=de.mpgumstadt.mpgvplan)!
 For a Windows version, take a look at [this repository](https://github.com/mpggu/mobileAppWin).
 
